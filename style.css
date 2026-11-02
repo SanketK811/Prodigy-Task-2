@@ -1,0 +1,394 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    color: white;
+
+    /* Animated gradient background */
+    background: linear-gradient(
+        -45deg,
+        #0f172a,
+        #1e1b4b,
+        #312e81,
+        #0f766e,
+        #0f172a
+    );
+
+    background-size: 400% 400%;
+
+    animation: gradientBG 12s ease infinite;
+
+    overflow: hidden;
+}
+
+
+/* Background Animation */
+
+@keyframes gradientBG {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* Decorative glowing circles */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    background: #8b5cf6;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    opacity: 0.5;
+
+    top: -100px;
+    left: -100px;
+
+    z-index: -1;
+}
+
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    background: #06b6d4;
+
+    border-radius: 50%;
+
+    filter: blur(130px);
+
+    opacity: 0.4;
+
+    bottom: -150px;
+    right: -100px;
+
+    z-index: -1;
+}
+
+
+/* Main Stopwatch Card */
+
+.stopwatch {
+
+    width: 430px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    /* Glass effect */
+
+    background: rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(20px);
+
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+}
+
+
+/* Heading */
+
+h1 {
+
+    font-size: 38px;
+
+    margin-bottom: 25px;
+
+    letter-spacing: 1px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.3);
+
+}
+
+
+/* Stopwatch Display */
+
+#display {
+
+    font-size: 55px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 30px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px #38bdf8,
+        0 0 25px rgba(56, 189, 248, 0.6);
+
+}
+
+
+/* Buttons */
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 30px;
+
+}
+
+
+button {
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    color: white;
+
+    transition: all 0.3s ease;
+
+}
+
+
+/* Start */
+
+#startBtn {
+
+    background: linear-gradient(
+        135deg,
+        #22c55e,
+        #16a34a
+    );
+
+    box-shadow:
+        0 5px 15px rgba(34, 197, 94, 0.35);
+
+}
+
+
+/* Pause */
+
+#pauseBtn {
+
+    background: linear-gradient(
+        135deg,
+        #f59e0b,
+        #d97706
+    );
+
+    box-shadow:
+        0 5px 15px rgba(245, 158, 11, 0.35);
+
+}
+
+
+/* Lap */
+
+#lapBtn {
+
+    background: linear-gradient(
+        135deg,
+        #3b82f6,
+        #2563eb
+    );
+
+    box-shadow:
+        0 5px 15px rgba(59, 130, 246, 0.35);
+
+}
+
+
+/* Reset */
+
+#resetBtn {
+
+    background: linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+
+    box-shadow:
+        0 5px 15px rgba(239, 68, 68, 0.35);
+
+}
+
+
+/* Button Hover */
+
+button:hover {
+
+    transform: translateY(-3px) scale(1.05);
+
+    filter: brightness(1.15);
+
+}
+
+
+/* Button Click */
+
+button:active {
+
+    transform: scale(0.95);
+
+}
+
+
+/* Lap Heading */
+
+h2 {
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+
+    color: #e2e8f0;
+
+}
+
+
+/* Lap List */
+
+#laps {
+
+    list-style: none;
+
+    max-height: 170px;
+
+    overflow-y: auto;
+
+    padding-right: 5px;
+
+}
+
+
+/* Lap Item */
+
+#laps li {
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    padding: 10px;
+
+    margin: 7px 0;
+
+    border-radius: 8px;
+
+    color: #e2e8f0;
+
+    transition: 0.3s;
+
+}
+
+
+/* Lap Hover */
+
+#laps li:hover {
+
+    background: rgba(255, 255, 255, 0.15);
+
+    transform: translateX(5px);
+
+}
+
+
+/* Scrollbar */
+
+#laps::-webkit-scrollbar {
+
+    width: 5px;
+
+}
+
+#laps::-webkit-scrollbar-thumb {
+
+    background: #38bdf8;
+
+    border-radius: 10px;
+
+}
+
+
+/* Mobile Responsive */
+
+@media (max-width: 500px) {
+
+    .stopwatch {
+
+        width: 90%;
+
+        padding: 30px 20px;
+
+    }
+
+    #display {
+
+        font-size: 40px;
+
+    }
+
+    h1 {
+
+        font-size: 30px;
+
+    }
+
+}
